@@ -7,9 +7,10 @@ public class BubbleSorter {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Random r = new Random ();
-		int[] nArray = new int[10];
+		int[] nArray = new int[20];
 		for ( int i = 0 ; i < nArray.length ; i++ ){
-			nArray[ i ] = r.nextInt(30);}
+			nArray[ i ] = r.nextInt(60);
+		}
 		
 	scanAndWriteArrays (nArray);	
 	
@@ -21,49 +22,44 @@ public class BubbleSorter {
 		//this variable operator sets up the main while loop and allows us to write an exit condition
 		boolean aa = false;
 		
-		int startVar1 = 0;
-		int endVar1 = 0;
-		
-		
-		//outlier use code
-		//if ( nArray.length < 1 ){
-		//	System.out.println("Add more numbers to sort!");
-		//}	
-		// outlier use code as well
-		//no longer works with redesign,  don't care to fix it since no reason
-		//if (nArray.length == 1) {continue;}
-		
-		//if ( nArray.length > 2 ) {	
-		//}
+		int startLoc = 0;
 		while (!aa) {
-			while (startVar1 < (nArray.length - 1)) {
-			int Holder1 = nArray[startVar1];
-			int Holder2 = nArray[startVar1 + 1]; 
+			// this variable tracks if a swap has occurred during the array pass
+			boolean areWeStop = true;
+			while (startLoc < (nArray.length - 1)) {
+			//the holder variables hold the data in memory as a reference
+			int Holder1 = nArray[startLoc];
+			int Holder2 = nArray[startLoc+ 1]; 
+			//the comparator variables are the data being manipulated by the program in the array
 			int Comparator1 = Holder1;
 			int Comparator2 = Holder2;
 			
+			//swap if necessary
+			if (Comparator1 > Comparator2) {
+				nArray[startLoc] = Holder2;
+				nArray[startLoc + 1] = Holder1;
+				startLoc++;
+				areWeStop = false;
+				
+				
+				
+				
+			}
+			//pass and increment if no swap
 			if ( Comparator1 < Comparator2 ) {
-			startVar1++;
-			endVar1++;
+			startLoc++;
 				
 			}
 			
 			if ( Comparator1 == Comparator2 ) {
-				startVar1++;
-				endVar1++;
+				startLoc++;
 			}
 			
-			if (Comparator1 > Comparator2) {
-				nArray[startVar1] = Holder2;
-				nArray[startVar1 + 1] = Holder1;
-				startVar1++;
-				endVar1 = 0;
-				
+			
 				
 			}
-				
-			}
-			if (endVar1 >= nArray.length ) {
+			//evaluate the ending conditions and print to console if true
+			if (startLoc == nArray.length-1 && areWeStop == true) {
 				String output = "";
 				for (int i = 0 ; i < nArray.length ; i++) {
 					output += nArray[i] + ", ";
@@ -71,23 +67,9 @@ public class BubbleSorter {
 				System.out.println(output);
 				aa = true ; 
 			} else {
-				startVar1 = 0;
+				startLoc = 0;
 			}
 	}
 	
 }
 }
-
-
-	
-	
- //-  
- //declare variables 
- 
- //- -
- //if a change is necessary write the values to arrays, decrease variable?
- 
- ///- - 
-// if a change is not necessary. increase the value of the initial variable, break?
- 
- 
